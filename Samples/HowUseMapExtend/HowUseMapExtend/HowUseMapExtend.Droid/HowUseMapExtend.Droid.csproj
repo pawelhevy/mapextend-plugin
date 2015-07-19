@@ -91,12 +91,13 @@
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
-    <Reference Include="Xam.Plugin.MapExtend.Abstractions">
-      <HintPath>..\..\packages\Xam.Plugin.MapExtend.1.1.0.2\lib\MonoAndroid10\Xam.Plugin.MapExtend.Abstractions.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Xam.Plugin.MapExtend.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\MapExtend.Maps.Plugin\MapExtend.Maps.Plugin.Forms.Plugin.Android\bin\Debug\Xam.Plugin.MapExtend.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Xam.Plugin.MapExtend.Android">
-      <HintPath>..\..\packages\Xam.Plugin.MapExtend.1.1.0.2\lib\MonoAndroid10\Xam.Plugin.MapExtend.Android.dll</HintPath>
+    <Reference Include="Xam.Plugin.MapExtend.Android, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\MapExtend.Maps.Plugin\MapExtend.Maps.Plugin.Forms.Plugin.Android\bin\Debug\Xam.Plugin.MapExtend.Android.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace Xam.Plugin.MapExtend.Abstractions
 {
@@ -24,6 +25,8 @@ namespace Xam.Plugin.MapExtend.Abstractions
         /// </summary>
         public ObservableRangeCollection<Position> polilenes { get; set; }
 
+        public ObservableRangeCollection<PinExtend> EPins { get; set; }
+
         /// <summary>
         /// Constructor MapExtend
         /// </summary>
@@ -31,6 +34,7 @@ namespace Xam.Plugin.MapExtend.Abstractions
             : base()
         {
             polilenes = new ObservableRangeCollection<Position>();
+            EPins = new ObservableRangeCollection<PinExtend>();
         }
 
         /// <summary>
@@ -41,7 +45,20 @@ namespace Xam.Plugin.MapExtend.Abstractions
             : base(mapSpan)
         {
             polilenes = new ObservableRangeCollection<Position>();
+            EPins = new ObservableRangeCollection<PinExtend>();
         }
+
+        public static readonly BindableProperty SelectedPinProperty = BindableProperty.Create<MapExtend, PinExtend>(x => x.SelectedPin, null);
+
+        public PinExtend SelectedPin
+        {
+            get { return (PinExtend)base.GetValue(SelectedPinProperty); }
+            set { base.SetValue(SelectedPinProperty, value); }
+        }
+
+        public ICommand ShowDetailCommand { get; set; }
+
+        
 
 
         private string getMapsApiDirectionsUrl(Position From, Position To)
@@ -148,10 +165,11 @@ namespace Xam.Plugin.MapExtend.Abstractions
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
-                        this.Pins.Add(new Pin()
+                        this.EPins.Add(new PinExtend()
                         {
-                            Label = item.name,
-                            Position = new Position(item.geometry.location.lat, item.geometry.location.lng)
+                            Name = item.name,
+                            Details = item.name,
+                            Location = new Position(item.geometry.location.lat, item.geometry.location.lng)
                         });
                     });
                 }
@@ -225,12 +243,11 @@ namespace Xam.Plugin.MapExtend.Abstractions
             var po = pos.First();
 
             this.MoveToRegion(MapSpan.FromCenterAndRadius(po, Xamarin.Forms.Maps.Distance.FromMiles(0.5)));
-            this.Pins.Add(new Pin
+            this.EPins.Add(new PinExtend
             {
-                Label = Adresss,
-                Address = Adresss,
-                Position = po,
-                Type = PinType.SearchResult,
+                Name = Adresss,
+                Details = Adresss,
+                Location = po,
             });
         }
     }

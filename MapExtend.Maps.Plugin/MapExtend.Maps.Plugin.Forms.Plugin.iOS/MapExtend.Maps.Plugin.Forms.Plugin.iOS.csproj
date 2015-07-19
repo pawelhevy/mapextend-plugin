@@ -36,6 +36,7 @@
     <DocumentationFile>bin\iPhone\Release\Xam.Plugin.MapExtend.iOS.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CustomAnnotation.cs" />
     <Compile Include="MapExtendRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

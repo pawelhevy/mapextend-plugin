@@ -91,7 +91,7 @@ namespace HowUseMapExtend
 
             var locator = CrossGeolocator.Current;
 
-            locator.DesiredAccuracy = 20;
+            locator.DesiredAccuracy = 50;
 
             var geoLocation = locator.GetPositionAsync().ContinueWith(t =>
             {
@@ -110,7 +110,7 @@ namespace HowUseMapExtend
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         map.MoveToRegion(MapSpan.FromCenterAndRadius(currentLocation, Xamarin.Forms.Maps.Distance.FromMiles(0.5)));
-                        map.Pins.Add(new Pin { Label = "seu endereço", Position = currentLocation });
+                        map.EPins.Add(new PinExtend{ Name= "seu endereço", Location= currentLocation, Details = "seu endreço", ResourceNameImg = "icon" });
                     });
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());

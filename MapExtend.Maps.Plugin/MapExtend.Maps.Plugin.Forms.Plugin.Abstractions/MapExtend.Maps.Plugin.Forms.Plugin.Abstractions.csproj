@@ -40,6 +40,7 @@
     <Compile Include="MapExtend.cs" />
     <Compile Include="Models\Places\Places.cs" />
     <Compile Include="Models\Routes\Routes.cs" />
+    <Compile Include="PinExtend.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

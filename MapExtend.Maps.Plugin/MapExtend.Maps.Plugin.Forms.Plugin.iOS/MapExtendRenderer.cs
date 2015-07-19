@@ -61,6 +61,38 @@ namespace Xam.Plugin.MapExtend.iOS
             ((ObservableCollection<Pin>)formsMap.Pins).CollectionChanged += OnPinsCollectionChanged;
 
             formsMap.polilenes.CollectionChanged += OnPolCollectionChanged;
+
+            formsMap.EPins.CollectionChanged += OnEPinsCollectionChanged;
+        }
+
+        private void OnEPinsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            UpdateEPins();
+        }
+
+        private void UpdateEPins()
+        {
+            var mkMapView = Control;
+            var formsMap = Element;
+
+            if (mkMapView.Annotations.Length > 0)
+            {
+                mkMapView.RemoveAnnotations(mkMapView.Annotations);
+            }
+
+            var items = formsMap.EPins;
+
+            foreach (var item in items)
+            {
+
+                var coord = new CLLocationCoordinate2D(item.Location.Latitude, item.Location.Longitude);
+
+                var point = new CustomAnnotation() { PinE = item };
+                point.coord = coord;
+
+
+                mkMapView.AddAnnotation(point);
+            }
         }
 
         private void OnPolCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -147,6 +179,20 @@ namespace Xam.Plugin.MapExtend.iOS
             var renderer = new MKPolylineRenderer(route) { StrokeColor = UIColor.Blue };
 
             return renderer;
+        }
+
+        public override MKAnnotationView GetViewForAnnotation(MKMapView mapView, MonoTouch.Foundation.NSObject annotation)
+        {
+            var pet = ((CustomAnnotation)annotation);
+
+            string pinImage = pet.PinE.ResourceNameImg;
+            var pin = new MKAnnotationView();
+
+            pin.Image = UIImage.FromBundle(pinImage);
+            pin.CenterOffset = new PointF(0, -15);
+            pin.Annotation = annotation;
+
+            return pin;
         }
     }
 }
